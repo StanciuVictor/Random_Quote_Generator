@@ -14,25 +14,31 @@ const quotes = [
     quote: 'Believe you can and you\'re halfway there.',
     source: 'Theodore Roosevelt',       // the person or character who said it
     citation: 'Harvard',                // reference to the source of the quote (book, movie, song)
-    year: '1905'                        // the year the quote originated.
+    year: '1905',                       // the year the quote originated.
+    tags: ['motivational']              // list of categories
   },
   {
     quote: 'I would rather die of passion than of boredom.',
     source: 'Vincent van Gogh',
-    year: '1884'
+    year: '1884',
+    tags: ['inspirational']
   },
   {
     quote: 'Eighty percent of success is showing up.',
     source: 'Woody Allen',
-    year: '1982'
+    year: '1982',
+    tags: ['business','motivational']
   },
   {
-    quote: 'You can never cross the ocean until you have the courage to lose sight of the shore.',
-    source: 'Christopher Columbus'
+    quote: 'When you can\'t find someone to follow, you have to find a way to lead by example.',
+    source: 'Roxane Gay',
+    citation: 'Bad Feminist',
+    tags: ['motivational']
   },
   {
-    quote: 'Go confidently in the direction of your dreams. Live the life you have imagined.',
-    source: 'Henry David Thoreau'
+    quote: 'Business opportunities are like buses, there\'s always another one coming.',
+    source: 'Richard Branson',
+    tags: ['business', 'motivational']
   }
 ];
 // console.log(quotes);    // Test to see if the quotes array is OK.
@@ -55,9 +61,9 @@ let randomNumber = (num) => Math.floor(Math.random() * num);
 * @returns {object} The quote object
 */
 function getRandomQuote(arr){
-    let index = randomNumber(arr.length);          // Get a random number between [0;5) => [0;4] (the last index of quotes array)
-  // console.log(`Index is: ${index}`);            // Test
-    return arr[index];                             // Return random quote object
+    let index = randomNumber(arr.length);     // Get a random number between [0;5) => [0;4] (the last index of quotes array)
+  // console.log(`Index is: ${index}`);       // Test
+    return arr[index];                        // Return random quote object
 }
 
 
@@ -79,6 +85,9 @@ function printQuote(){
   if (typeof quoteObj.year !== 'undefined') {
     htmlText += `<span class="year">${quoteObj.year}</span>`;
   }
+  if (typeof quoteObj.tags !== 'undefined') {
+    htmlText += `<span class="tags">, ${quoteObj.tags.join(', ')}</span>`;
+  }
   htmlText += `</p>`;
   document.getElementById('quote-box').innerHTML = htmlText;
 }
@@ -89,9 +98,6 @@ function printQuote(){
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
-
-
-
 
 
 
