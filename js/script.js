@@ -41,7 +41,6 @@ const quotes = [
     tags: ['business', 'motivational']
   }
 ];
-// console.log(quotes);    // Test to see if the quotes array is OK.
 
 
 /**
@@ -62,8 +61,7 @@ let randomNumber = (num) => Math.floor(Math.random() * num);
 */
 function getRandomQuote(arr){
     let index = randomNumber(arr.length);     // Get a random number between [0;5) => [0;4] (the last index of quotes array)
-  // console.log(`Index is: ${index}`);       // Test
-    return arr[index];                        // Return random quote object
+    return arr[index];
 }
 
 
@@ -72,16 +70,17 @@ function getRandomQuote(arr){
  */
 function printQuote(){
   // Set random background color
+  /* Ideea taken from https://stackoverflow.com/questions/31089414/javascript-change-background-color-on-click
+  * adapted so that the color is random
+  */
   document.body.style.backgroundColor = `rgb(${randomNumber(256)},${randomNumber(256)},${randomNumber(256)})`;
   // Get random quote object
   let quoteObj = getRandomQuote(quotes);
-  // console.log(quoteObj);       // Test
   let htmlText = `<p class="quote">${quoteObj.quote}</p><p class="source">${quoteObj.source}`;
-  // If there is a 'citation' property with a value assigned to it, append it
+  // If there is a 'citation', 'year' or 'tags' property with a value assigned to it, append it
   if (typeof quoteObj.citation !== 'undefined') {
     htmlText += `<span class="citation">${quoteObj.citation}</span>`;
   }
-  // If there is a 'year' property with a value assigned to it, append it
   if (typeof quoteObj.year !== 'undefined') {
     htmlText += `<span class="year">${quoteObj.year}</span>`;
   }
@@ -100,4 +99,6 @@ function printQuote(){
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 
-
+// Timing function to print new quote to the page every 10 seconds
+// Informations taken from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+let repeatPrintQuote = setInterval(printQuote, 1000 * 3);
