@@ -27,18 +27,40 @@ const quotes = [
     quote: 'Eighty percent of success is showing up.',
     source: 'Woody Allen',
     year: '1982',
-    tags: ['business','motivational']
+    tags: ['business', 'motivational']
   },
   {
     quote: 'When you can\'t find someone to follow, you have to find a way to lead by example.',
     source: 'Roxane Gay',
     citation: 'Bad Feminist',
+    year: '2014',
     tags: ['motivational']
   },
   {
     quote: 'Business opportunities are like buses, there\'s always another one coming.',
     source: 'Richard Branson',
     tags: ['business', 'motivational']
+  },
+  {
+    quote: 'It is a curious thought, but it is only when you see people looking ridiculous that you realize just how much you love them.',
+    source: 'Agatha Christie',
+    citation: 'An Autobiography',
+    year: '1977',
+    tags: ['life', 'books']
+  },
+  {
+    quote: 'Hoping for the best, prepared for the worst, and unsurprised by anything in between.',
+    source: 'Maya Angelou',
+    citation: 'I Know Why the Caged Bird Sings',
+    year: '1969',
+    tags: ['life', 'books']
+  },
+  {
+    quote: 'There is nothing sweeter in this sad world than the sound of someone you love calling your name.',
+    source: 'Kate DiCamillo',
+    citation: 'The Tale of Despereaux',
+    year: '2003',
+    tags: ['books', 'love', 'fiction']
   }
 ];
 
@@ -60,8 +82,8 @@ let randomNumber = (num) => Math.floor(Math.random() * num);
 * @returns {object} The quote object
 */
 function getRandomQuote(arr){
-    let index = randomNumber(arr.length);     // Get a random number between [0;5) => [0;4] (the last index of quotes array)
-    return arr[index];
+  let index = randomNumber(arr.length);     // Get a random number between [0;5) => [0;4] (the last index of quotes array)
+  return arr[index];
 }
 
 
@@ -70,7 +92,7 @@ function getRandomQuote(arr){
  */
 function printQuote(){
   // Set random background color
-  /* Ideea taken from https://stackoverflow.com/questions/31089414/javascript-change-background-color-on-click
+  /* Idea taken from https://stackoverflow.com/questions/31089414/javascript-change-background-color-on-click
   * adapted so that the color is random
   */
   document.body.style.backgroundColor = `rgb(${randomNumber(256)},${randomNumber(256)},${randomNumber(256)})`;
@@ -101,4 +123,4 @@ document.getElementById('load-quote').addEventListener("click", printQuote, fals
 
 // Timing function to print new quote to the page every 10 seconds
 // Informations taken from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-let repeatPrintQuote = setInterval(printQuote, 1000 * 3);
+let repeatPrintQuote = setInterval(printQuote, 1000 * 10);
