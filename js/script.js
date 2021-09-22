@@ -72,7 +72,7 @@ const quotes = [
  * @returns {number} The random number between 0 and set number
  */
 
-let randomNumber = (num) => Math.floor(Math.random() * num);
+const randomNumber = (num) => Math.floor(Math.random() * num);
 
 
 /**
@@ -81,8 +81,21 @@ let randomNumber = (num) => Math.floor(Math.random() * num);
 * @param {array} arr - The array from which this function takes one random object
 * @returns {object} The quote object
 */
+let indexAlreadyChosen;
+
 function getRandomQuote(arr){
-  let index = randomNumber(arr.length);     // Get a random number between [0;5) => [0;4] (the last index of quotes array)
+  // console.log(`Index Already Chosen: ${indexAlreadyChosen}`);
+  let index = randomNumber(arr.length);                       // Get a random number between [0;8) => [0;7] (the last index of quotes array)
+  // console.log(`New index: ${index}`);                      // Test
+  // console.log(arr[index]);                                 // Test
+   // Do not display the same quote two times in a row
+   while (index === indexAlreadyChosen) {
+    index = randomNumber(arr.length);
+    // console.log(`The new index from WHILE is: ${index}`);  // Test
+  }
+  indexAlreadyChosen = index;
+  // console.log(`After WHILE:`);                             // Test
+  // console.log(arr[index]);                                 // Test
   return arr[index];
 }
 
@@ -97,7 +110,7 @@ function printQuote(){
   */
   document.body.style.backgroundColor = `rgb(${randomNumber(256)},${randomNumber(256)},${randomNumber(256)})`;
   // Get random quote object
-  let quoteObj = getRandomQuote(quotes);
+  const quoteObj = getRandomQuote(quotes);
   let htmlText = `<p class="quote">${quoteObj.quote}</p><p class="source">${quoteObj.source}`;
   // If there is a 'citation', 'year' or 'tags' property with a value assigned to it, append it
   if (typeof quoteObj.citation !== 'undefined') {
@@ -123,4 +136,4 @@ document.getElementById('load-quote').addEventListener("click", printQuote, fals
 
 // Timing function to print new quote to the page every 10 seconds
 // Informations taken from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-let repeatPrintQuote = setInterval(printQuote, 1000 * 10);
+const repeatPrintQuote = setInterval(printQuote, 1000 * 10);
