@@ -9,7 +9,7 @@ project 1 - A Random Quote Generator
 
 
 //Array containing 5 quote objects.
-quotes = [
+const quotes = [
   {
     quote: '"Believe you can and you\'re halfway there."',
     source: 'Theodore Roosevelt',       // the person or character who said it
@@ -55,9 +55,9 @@ function getRandomQuote(arr){
  * @returns {string} The html code needed to print the quote, source, citation and year.
  */
 function printQuote(){
-  quoteObj = getRandomQuote(quotes);
+  let quoteObj = getRandomQuote(quotes);
   // console.log(quoteObj);       // Test
-  htmlText = `<p class="quote">${quoteObj.quote}</p><p class="source">${quoteObj.source}`;
+  let htmlText = `<p class="quote">${quoteObj.quote}</p><p class="source">${quoteObj.source}`;
   // If there is a citation property with a value assigned to it, append it
   if (typeof quoteObj.citation !== 'undefined') {
     htmlText += `<span class="citation">${quoteObj.citation}</span>`;
@@ -70,7 +70,7 @@ function printQuote(){
   return htmlText;
 }
 
-// print the html code in the quote-box
+// Print the html code in the quote-box
 document.getElementById('quote-box').innerHTML = printQuote();
 
 /***
