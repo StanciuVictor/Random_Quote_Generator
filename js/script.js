@@ -1,13 +1,3 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
-
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-
 //Array containing 5 quote objects.
 const quotes = [
   {
@@ -84,18 +74,13 @@ const randomNumber = (num) => Math.floor(Math.random() * num);
 let indexAlreadyChosen;
 
 function getRandomQuote(arr){
-  // console.log(`Index Already Chosen: ${indexAlreadyChosen}`);
-  let index = randomNumber(arr.length);                       // Get a random number between [0;8) => [0;7] (the last index of quotes array)
-  // console.log(`New index: ${index}`);                      // Test
-  // console.log(arr[index]);                                 // Test
+  // Get a random number between [0;8) => [0;7] (the last index of quotes array)
+  let index = randomNumber(arr.length);
    // Do not display the same quote two times in a row
    while (index === indexAlreadyChosen) {
     index = randomNumber(arr.length);
-    // console.log(`The new index from WHILE is: ${index}`);  // Test
   }
   indexAlreadyChosen = index;
-  // console.log(`After WHILE:`);                             // Test
-  // console.log(arr[index]);                                 // Test
   return arr[index];
 }
 
@@ -124,6 +109,10 @@ function printQuote(){
   }
   htmlText += `</p>`;
   document.getElementById('quote-box').innerHTML = htmlText;
+
+  // Stop timer and reset it
+  clearInterval(repeatPrintQuote);
+  repeatPrintQuote = setInterval(printQuote, 1000 * 2);
 }
 
 
@@ -136,4 +125,10 @@ document.getElementById('load-quote').addEventListener("click", printQuote, fals
 
 // Timing function to print new quote to the page every 10 seconds
 // Informations taken from https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-const repeatPrintQuote = setInterval(printQuote, 1000 * 10);
+let repeatPrintQuote = setInterval(printQuote, 1000 * 10);
+
+// Display seconds in real time
+// const time = setInterval(() => {
+//   const d = new Date();
+//   console.log(d.getSeconds());
+// }, 1000);
